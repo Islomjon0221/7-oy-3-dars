@@ -1,0 +1,52 @@
+.container{
+    max-width: 800px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+.formWrapper {
+    margin-top: 50px;
+    box-shadow: 0px 0px 10px 1px black;
+    padding: 20px;
+}
+
+button {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.formWrapper button {
+    width: 50%;
+    color: #FFF;
+    border-radius: 5px;
+    background: #0015ff;
+    transition: all 0.3s;
+    border: 3px solid #0015ff;
+}
+
+.formWrapper button:hover {
+    background: #fff;
+    color: #0015ff;
+}
+
+.sign {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.sign input {
+    border: none;
+    border-bottom: 3px solid black;
+    transition: all 0.5s;
+}
+
+.sign input:focus {
+    outline: none;
+    border-bottom: 3px solid blue;
+}
+
+.sign:last-child {
+    margin-bottom: 0;
+}
