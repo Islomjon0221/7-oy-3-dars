@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Register.module.css"
 import { useRef } from "react"
 
@@ -5,6 +6,7 @@ function Register() {
   const nameRef = useRef();
   const passwordRef = useRef();
   const rePasswordRef = useRef();
+  const navigate = useNavigate();
 
   function validate() {
     if(!nameRef.current.value) {
@@ -44,29 +46,46 @@ function Register() {
     e.preventDefault()
     if(validate()){
     const user = {
-      name: nameRef,
-      password: passwordRef 
+      name: nameRef.current.value,
+      password: passwordRef.current.value, 
+      status: "active"
     }
-    localStorage.setItem("user", JSON.stringify(user))
+   
+    let data = getData()
+    data.push(user);
+    localStorage.setItem('user', JSON.stringify(data));
+    nameRef.current.value=''
+    passwordRef.current.value=''
+    rePasswordRef.current.value=''
+    navigate("/login")
   }
   }
+
+  function getData() {
+    let data = [];
+    if(localStorage.getItem('user')) {
+        data = JSON.parse(localStorage.getItem('user'))
+    }
+
+    return data
+}
 
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit} className={styles.formWrapper}>
       <div className={styles.sign}>
-      <label>Name</label>
+      <label>Name:</label>
       <input ref={nameRef} type="text" placeholder="Name..." />
       </div>
 
       <div className={styles.sign}>
-      <label>Password</label>
+      <label>Password:</label>
       <input ref={passwordRef} type="password" placeholder="Password..."/>
       </div>
       
       <div className={styles.sign}>
-      <label>Re-password</label>
+      <label>Re-password:</label>
       <input ref={rePasswordRef} type="password" placeholder="Re-password..." />
       </div>
       <button>SUBMIT</button>
